@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace SecondTask
 {
-    public partial class Form1 : Form
+    public partial class ExchangeRate : Form
     {
-        public Form1()
+        public ExchangeRate()
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
         }
     }
