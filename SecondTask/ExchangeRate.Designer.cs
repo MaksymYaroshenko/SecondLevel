@@ -28,56 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.loadData = new System.Windows.Forms.Button();
-            this.dataTable = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
+            this.LoadData = new System.Windows.Forms.Button();
+            this.dataCurrencyTable = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCurrencyTable)).BeginInit();
             this.SuspendLayout();
             // 
-            // loadData
+            // LoadData
             // 
-            this.loadData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LoadData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadData.Location = new System.Drawing.Point(283, 12);
-            this.loadData.Name = "loadData";
-            this.loadData.Size = new System.Drawing.Size(179, 41);
-            this.loadData.TabIndex = 0;
-            this.loadData.Text = "Load Data";
-            this.loadData.UseVisualStyleBackColor = true;
+            this.LoadData.Location = new System.Drawing.Point(283, 12);
+            this.LoadData.Name = "LoadData";
+            this.LoadData.Size = new System.Drawing.Size(179, 41);
+            this.LoadData.TabIndex = 0;
+            this.LoadData.Text = "Load Data";
+            this.LoadData.UseVisualStyleBackColor = true;
+            this.LoadData.Click += new System.EventHandler(this.LoadData_Click);
             // 
-            // dataTable
+            // dataCurrencyTable
             // 
-            this.dataTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataCurrencyTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataTable.Location = new System.Drawing.Point(85, 59);
-            this.dataTable.Name = "dataTable";
-            this.dataTable.RowHeadersWidth = 51;
-            this.dataTable.RowTemplate.Height = 24;
-            this.dataTable.Size = new System.Drawing.Size(575, 343);
-            this.dataTable.TabIndex = 1;
+            this.dataCurrencyTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataCurrencyTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataCurrencyTable.Location = new System.Drawing.Point(67, 59);
+            this.dataCurrencyTable.Name = "dataCurrencyTable";
+            this.dataCurrencyTable.RowHeadersWidth = 51;
+            this.dataCurrencyTable.RowTemplate.Height = 24;
+            this.dataCurrencyTable.Size = new System.Drawing.Size(610, 325);
+            this.dataCurrencyTable.TabIndex = 1;
             // 
             // ExchangeRate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(715, 435);
-            this.Controls.Add(this.dataTable);
-            this.Controls.Add(this.loadData);
+            this.Controls.Add(this.dataCurrencyTable);
+            this.Controls.Add(this.LoadData);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ExchangeRate";
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Exchange Rate";
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCurrencyTable)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button loadData;
-        private System.Windows.Forms.DataGridView dataTable;
+        private System.Windows.Forms.Button LoadData;
+        private System.Windows.Forms.DataGridView dataCurrencyTable;
     }
 }
 
