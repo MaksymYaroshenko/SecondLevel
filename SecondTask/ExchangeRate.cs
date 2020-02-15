@@ -1,13 +1,7 @@
-﻿using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
@@ -15,7 +9,7 @@ namespace SecondTask
 {
     public partial class ExchangeRate : Form
     {
-        static string dollarPurchaseMinfin, dollarSaleMinfin, euroPurchaseMinfin, euroSaleMinfin, rublePurchaseMinfin, rubleSaleMinfin;
+        static string dollarPurchaseMinfinComUa, dollarSaleMinfinComUa, euroPurchaseMinfinComUa, euroSaleMinfinComUa, rublePurchaseMinfinComUa, rubleSaleMinfinComUa;
         static string dollarPurchaseKursComUa, dollarSaleKursComUa, euroPurchaseKursComUa, euroSaleKursComUa, rublePurchaseKursComUa, rubleSaleKursComUa;
         static string dollarPurchaseFinanceUa, dollarSaleFinanceUa, euroPurchaseFinanceUa, euroSaleFinanceUa, rublePurchaseFinanceUa, rubleSaleFinanceUa;
         static DataTable dataTable = new DataTable();
@@ -30,16 +24,16 @@ namespace SecondTask
         {
             try
             {
-                dataTable.Columns.Add("Source", typeof(string));
-                dataTable.Columns.Add("Currency", typeof(string));
-                dataTable.Columns.Add("Purchase", typeof(string));
-                dataTable.Columns.Add("Sale", typeof(string));
+                dataTable.Columns.Add(Properties.Resources.ResourceColumnTitle, typeof(string));
+                dataTable.Columns.Add(Properties.Resources.CurrencyColumnTitle, typeof(string));
+                dataTable.Columns.Add(Properties.Resources.PurchaseColumnTitle, typeof(string));
+                dataTable.Columns.Add(Properties.Resources.SaleColumnTitle, typeof(string));
 
-                GetDollarMinfin();
+                GetDollarMinfinComUa();
                 System.Threading.Thread.Sleep(200);
-                GetEuroMinfin();
+                GetEuroMinfinComUa();
                 System.Threading.Thread.Sleep(200);
-                GetRubleMinfin();
+                GetRubleMinfinComUa();
                 System.Threading.Thread.Sleep(200);
                 GetDollarFinanceUa();
                 System.Threading.Thread.Sleep(200);
@@ -57,16 +51,16 @@ namespace SecondTask
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please restart the application.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.WarningMessage, Properties.Resources.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        public static async void GetDollarMinfin()
+        public static async void GetDollarMinfinComUa()
         {
             try
             {
                 var httpClient = new HttpClient();
-                var html = await httpClient.GetStringAsync(Constants.MinfinUrl);
+                var html = await httpClient.GetStringAsync(Constants.MinfinComUaUrl);
 
                 var htmlDocument = new HtmlDocument();
                 htmlDocument.LoadHtml(html);
@@ -77,29 +71,29 @@ namespace SecondTask
 
                 var dollarPurchaseString = dollarDocumentListHtml[0].InnerHtml.ToString();
                 string[] dollarPurchaseStringArray = dollarPurchaseString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
-                dollarPurchaseMinfin = dollarPurchaseStringArray[0].Trim();
+                dollarPurchaseMinfinComUa = dollarPurchaseStringArray[0].Trim();
 
 
                 var dollarSaleString = dollarDocumentListHtml[1].InnerHtml.ToString();
                 string[] dollarSaleStringArrayHtml = dollarSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 string dollarSaleHtml = dollarSaleStringArrayHtml[6].Trim();
                 var dollarSaleStringArray = dollarSaleHtml.Split(new[] { '>' }, StringSplitOptions.RemoveEmptyEntries);
-                dollarSaleMinfin = dollarSaleStringArray[1].Trim();
+                dollarSaleMinfinComUa = dollarSaleStringArray[1].Trim();
 
-                dataTable.Rows.Add("Minfin", "USD", dollarPurchaseMinfin, dollarSaleMinfin);
+                dataTable.Rows.Add(Properties.Resources.MinfinComUaTitle, Properties.Resources.Dollar, dollarPurchaseMinfinComUa, dollarSaleMinfinComUa);
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please restart the application.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.WarningMessage, Properties.Resources.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        public static async void GetEuroMinfin()
+        public static async void GetEuroMinfinComUa()
         {
             try
             {
                 var httpClient = new HttpClient();
-                var html = await httpClient.GetStringAsync(Constants.MinfinUrl);
+                var html = await httpClient.GetStringAsync(Constants.MinfinComUaUrl);
 
                 var htmlDocument = new HtmlDocument();
                 htmlDocument.LoadHtml(html);
@@ -110,28 +104,28 @@ namespace SecondTask
 
                 var euroPurchaseString = euroDocumentListHtml[2].InnerHtml.ToString();
                 string[] euroPurchaseStringArray = euroPurchaseString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
-                euroPurchaseMinfin = euroPurchaseStringArray[0].Trim();
+                euroPurchaseMinfinComUa = euroPurchaseStringArray[0].Trim();
 
                 var euroSaleString = euroDocumentListHtml[3].InnerHtml.ToString();
                 string[] euroSaleStringArrayHtml = euroSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 string euroSaleHtml = euroSaleStringArrayHtml[6].Trim();
                 var euroSaleStringArray = euroSaleHtml.Split(new[] { '>' }, StringSplitOptions.RemoveEmptyEntries);
-                euroSaleMinfin = euroSaleStringArray[1].Trim();
+                euroSaleMinfinComUa = euroSaleStringArray[1].Trim();
 
-                dataTable.Rows.Add("Minfin", "Euro", euroPurchaseMinfin, euroSaleMinfin);
+                dataTable.Rows.Add(Properties.Resources.MinfinComUaTitle, Properties.Resources.Euro, euroPurchaseMinfinComUa, euroSaleMinfinComUa);
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please restart the application.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.WarningMessage, Properties.Resources.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        public static async void GetRubleMinfin()
+        public static async void GetRubleMinfinComUa()
         {
             try
             {
                 var httpClient = new HttpClient();
-                var html = await httpClient.GetStringAsync(Constants.MinfinUrl);
+                var html = await httpClient.GetStringAsync(Constants.MinfinComUaUrl);
 
                 var htmlDocument = new HtmlDocument();
                 htmlDocument.LoadHtml(html);
@@ -142,19 +136,19 @@ namespace SecondTask
 
                 var rublePurchaseString = rubleDocumentListHtml[4].InnerHtml.ToString();
                 string[] rublePurchaseStringArray = rublePurchaseString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
-                rublePurchaseMinfin = rublePurchaseStringArray[0].Trim();
+                rublePurchaseMinfinComUa = rublePurchaseStringArray[0].Trim();
 
                 var rubleSaleString = rubleDocumentListHtml[5].InnerHtml.ToString();
                 string[] rubleSaleStringArrayHtml = rubleSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 string rubleSaleHtml = rubleSaleStringArrayHtml[6].Trim();
                 var rubleSaleStringArray = rubleSaleHtml.Split(new[] { '>' }, StringSplitOptions.RemoveEmptyEntries);
-                rubleSaleMinfin = rubleSaleStringArray[1].Trim();
+                rubleSaleMinfinComUa = rubleSaleStringArray[1].Trim();
 
-                dataTable.Rows.Add("Minfin", "Ruble", rublePurchaseMinfin, rubleSaleMinfin);
+                dataTable.Rows.Add(Properties.Resources.MinfinComUaTitle, Properties.Resources.Ruble, rublePurchaseMinfinComUa, rubleSaleMinfinComUa);
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please restart the application.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.WarningMessage, Properties.Resources.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -180,11 +174,11 @@ namespace SecondTask
                 string[] dollarSaleStringArray = dollarSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 dollarSaleKursComUa = dollarSaleStringArray[0];
 
-                dataTable.Rows.Add("KursComUa", "USD", dollarPurchaseKursComUa, dollarSaleKursComUa);
+                dataTable.Rows.Add(Properties.Resources.KursComUaTitle, Properties.Resources.Dollar, dollarPurchaseKursComUa, dollarSaleKursComUa);
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please restart the application.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.WarningMessage, Properties.Resources.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -210,11 +204,11 @@ namespace SecondTask
                 string[] euroSaleStringArray = euroSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 euroSaleKursComUa = euroSaleStringArray[0];
 
-                dataTable.Rows.Add("KursComUa", "Euro", euroPurchaseKursComUa, euroSaleKursComUa);
+                dataTable.Rows.Add(Properties.Resources.KursComUaTitle, Properties.Resources.Euro, euroPurchaseKursComUa, euroSaleKursComUa);
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please restart the application.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.WarningMessage, Properties.Resources.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -240,11 +234,11 @@ namespace SecondTask
                 string[] rubleSaleStringArray = rubleSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 rubleSaleKursComUa = rubleSaleStringArray[0];
 
-                dataTable.Rows.Add("KursComUa", "Ruble", rublePurchaseKursComUa, rubleSaleKursComUa);
+                dataTable.Rows.Add(Properties.Resources.KursComUaTitle, Properties.Resources.Ruble, rublePurchaseKursComUa, rubleSaleKursComUa);
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please restart the application.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.WarningMessage, Properties.Resources.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -278,11 +272,11 @@ namespace SecondTask
                 string[] dollarSaleStringArray = dollarSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 dollarSaleFinanceUa = dollarSaleStringArray[0];
 
-                dataTable.Rows.Add("FinanceUa", "USD", dollarPurchaseFinanceUa, dollarSaleFinanceUa);
+                dataTable.Rows.Add(Properties.Resources.FinanceUaTitle, Properties.Resources.Dollar, dollarPurchaseFinanceUa, dollarSaleFinanceUa);
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please restart the application.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.WarningMessage, Properties.Resources.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -308,11 +302,11 @@ namespace SecondTask
                 string[] euroSaleStringArray = euroSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 euroSaleFinanceUa = euroSaleStringArray[0];
 
-                dataTable.Rows.Add("FinanceUa", "Euro", euroPurchaseFinanceUa, euroSaleFinanceUa);
+                dataTable.Rows.Add(Properties.Resources.FinanceUaTitle, Properties.Resources.Euro, euroPurchaseFinanceUa, euroSaleFinanceUa);
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please restart the application.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.WarningMessage, Properties.Resources.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -346,11 +340,11 @@ namespace SecondTask
                 string[] rubleSaleStringArray = rubleSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 rubleSaleFinanceUa = rubleSaleStringArray[0];
 
-                dataTable.Rows.Add("FinanceUa", "Ruble", rublePurchaseFinanceUa, rubleSaleFinanceUa);
+                dataTable.Rows.Add(Properties.Resources.FinanceUaTitle, Properties.Resources.Ruble, rublePurchaseFinanceUa, rubleSaleFinanceUa);
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please restart the application.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Properties.Resources.WarningMessage, Properties.Resources.WarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
