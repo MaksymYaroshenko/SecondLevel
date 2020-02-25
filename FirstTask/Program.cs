@@ -47,7 +47,7 @@ namespace FirstTask
             };
             Tree tree = new Tree(list);
             tree.BuildTree(list);
-            Console.WriteLine(tree.GetParent("35", 7));
+            Console.WriteLine($"Parent of element 35 on the seventh level is: {tree.GetParent("35", 7)} ");
         }
     }
 }
