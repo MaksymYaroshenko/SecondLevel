@@ -258,7 +258,7 @@ namespace SecondTask
 
                 var dollarPurchaseDocumentList = dollarPurchaseDocumentListHtml[0].Descendants("td")
                     .Where(node => node.GetAttributeValue("class", "")
-                    .Equals("value up")).ToList();
+                    .Equals("value")).ToList();
 
                 var dollarPurchaseString = dollarPurchaseDocumentList[0].InnerHtml.ToString();
                 string[] dollarPurchaseStringArray = dollarPurchaseString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
@@ -266,7 +266,7 @@ namespace SecondTask
 
                 var dollarSaleDocumentList = dollarPurchaseDocumentListHtml[0].Descendants("td")
                     .Where(node => node.GetAttributeValue("class", "")
-                    .Equals("value up")).ToList();
+                    .Equals("value")).ToList();
 
                 var dollarSaleString = dollarSaleDocumentList[1].InnerHtml.ToString();
                 string[] dollarSaleStringArray = dollarSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
@@ -294,11 +294,11 @@ namespace SecondTask
                    .Where(node => node.GetAttributeValue("class", "")
                    .Equals("value")).ToList();
 
-                var euroPurchaseString = euroDocumentListHtml[0].InnerHtml.ToString();
+                var euroPurchaseString = euroDocumentListHtml[2].InnerHtml.ToString();
                 string[] euroPurchaseStringArray = euroPurchaseString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 euroPurchaseFinanceUa = euroPurchaseStringArray[0];
 
-                var euroSaleString = euroDocumentListHtml[1].InnerHtml.ToString();
+                var euroSaleString = euroDocumentListHtml[3].InnerHtml.ToString();
                 string[] euroSaleStringArray = euroSaleString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
                 euroSaleFinanceUa = euroSaleStringArray[0];
 
