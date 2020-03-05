@@ -56,6 +56,10 @@
     <Compile Include="ExchangeRate.Designer.cs">
       <DependentUpon>ExchangeRate.cs</DependentUpon>
     </Compile>
+    <Compile Include="FinanceUa.cs" />
+    <Compile Include="CurrencyAPI.cs" />
+    <Compile Include="KursComUa.cs" />
+    <Compile Include="MinfinComUa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ExchangeRate.resx">
