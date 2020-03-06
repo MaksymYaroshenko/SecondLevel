@@ -11,7 +11,7 @@ namespace SecondTask
 {
     public class MinfinComUa : CurrencyAPI
     {
-        static List<HtmlNode> currencyDocumentListHtml;
+        private static List<HtmlNode> currencyDocumentListHtml;
 
         public override string[] GetDollar()
         {
@@ -82,7 +82,7 @@ namespace SecondTask
             }
         }
 
-        public static async void SendRequest()
+        private static async void SendRequest()
         {
             try
             {

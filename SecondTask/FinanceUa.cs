@@ -9,7 +9,7 @@ namespace SecondTask
 {
     class FinanceUa : CurrencyAPI
     {
-        public static HtmlDocument htmlDocument;
+        private static HtmlDocument htmlDocument;
 
         public override string[] GetDollar()
         {
@@ -24,7 +24,7 @@ namespace SecondTask
 
                 var dollarDocumentList = dollarPurchaseDocumentListHtml[0].Descendants("td")
                     .Where(node => node.GetAttributeValue("class", "")
-                    .Equals("value down")).ToList();
+                    .Equals("value up")).ToList();
 
                 var dollarPurchaseString = dollarDocumentList[0].InnerHtml.ToString();
                 string[] dollarPurchaseStringArray = dollarPurchaseString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
@@ -48,7 +48,7 @@ namespace SecondTask
             {
                 var euroDocumentListHtml = htmlDocument.DocumentNode.Descendants("td")
                    .Where(node => node.GetAttributeValue("class", "")
-                   .Equals("value down")).ToList();
+                   .Equals("value up")).ToList();
 
                 var euroPurchaseString = euroDocumentListHtml[2].InnerHtml.ToString();
                 string[] euroPurchaseStringArray = euroPurchaseString.Split(new[] { '<' }, StringSplitOptions.RemoveEmptyEntries);
@@ -98,7 +98,7 @@ namespace SecondTask
             }
         }
 
-        public static async void SendRequest()
+        private static async void SendRequest()
         {
             try
             {
